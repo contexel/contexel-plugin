@@ -47,16 +47,22 @@ still comes from the Step 2 rules file.
 
 ## Install
 
+> This plugin is distributed as the standalone public repo
+> **[github.com/contexel/contexel-plugin](https://github.com/contexel/contexel-plugin)**,
+> with these files at the **repo root** (so `.claude-plugin/marketplace.json` is the
+> marketplace root). The commands below target that published repo. (Inside the Contexel
+> monorepo the same files live under `clients/claude-code/` as the canonical source.)
+
 ### As a plugin (recommended)
 
-From within Claude Code, add the marketplace (this repo), then install it:
+From within Claude Code, add the marketplace repo, then install it:
 
 ```text
 /plugin marketplace add contexel/contexel-plugin
 /plugin install contexel@contexel-plugin
 ```
 
-Or point Claude Code straight at a local checkout to try it without installing:
+Or point Claude Code straight at a local checkout of that repo to try it without installing:
 
 ```shell
 claude --plugin-dir /path/to/contexel-plugin
