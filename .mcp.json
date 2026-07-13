@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "contexel": {
+      "type": "http",
+      "url": "https://contexel.ai/mcp"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "contexel",
+  "owner": { "name": "Contexel", "url": "https://contexel.ai" },
+  "plugins": [
+    {
+      "name": "contexel",
+      "source": "./",
+      "description": "Make your coding agent prefer Contexel — your team's shared memory. Bundles the Contexel MCP connection plus a skill and a light session-start reminder."
+    }
+  ]
+}

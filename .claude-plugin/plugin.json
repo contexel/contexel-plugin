@@ -1,0 +1,12 @@
+{
+  "name": "contexel",
+  "description": "Make your coding agent prefer Contexel, your team's shared memory. Bundles a skill (retrieve team context first; save durable decisions, standards, and lessons into Contexel as the memory of record) plus a light session-start reminder. Complements the Contexel MCP connection and the per-project rules file; it does not replace them.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Contexel",
+    "url": "https://contexel.ai"
+  },
+  "homepage": "https://contexel.ai",
+  "license": "Apache-2.0",
+  "keywords": ["contexel", "memory", "context", "mcp", "retrieval"]
+}
