@@ -6,7 +6,8 @@ your team's shared memory for AI. It bundles:
 - **The MCP connection** (`.mcp.json`) to the hosted Contexel server
   (`https://contexel.ai/mcp`), so installing the plugin also wires the
   connection — no separate `claude mcp add`. OAuth is negotiated by the
-  transport the first time you run `/mcp` (browser sign-in); no key is stored.
+  transport the first time you run `/mcp` (browser sign-in); the plugin itself
+  contains no API key (any OAuth token is held by Claude Code, not the plugin).
 - **A skill** (`contexel-memory`) that Claude auto-invokes when you say
   "remember / save this / note this", or ask what the team knows, decided, or
   uses about something. It codifies the two Contexel habits: RETRIEVE FIRST
@@ -50,14 +51,14 @@ still comes from the Step 2 rules file.
 
 From within Claude Code, add the marketplace (this repo), then install it:
 
-```
+```text
 /plugin marketplace add contexel/contexel-plugin
 /plugin install contexel@contexel-plugin
 ```
 
 Or point Claude Code straight at a local checkout to try it without installing:
 
-```
+```shell
 claude --plugin-dir /path/to/contexel-plugin
 ```
 
