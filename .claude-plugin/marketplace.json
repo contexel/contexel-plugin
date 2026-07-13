@@ -1,5 +1,5 @@
 {
-  "name": "contexel",
+  "name": "contexel-plugin",
   "owner": { "name": "Contexel", "url": "https://contexel.ai" },
   "plugins": [
     {

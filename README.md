@@ -34,8 +34,15 @@ The plugin is **generic and tenant-agnostic**: it ships no realm names and no
 secrets. The bundled MCP URL is the shared hosted endpoint
 (`https://contexel.ai/mcp`) — the same for every team, because OAuth selects your
 workspace at sign-in — so the same plugin works for everyone, and your realm list
-still comes from the Step 2 rules file. (Self-hosting a Contexel server at a
-different URL? Use `claude mcp add` with your URL instead of the bundled connection.)
+still comes from the Step 2 rules file.
+
+> **Self-hosting Contexel at a different URL?** This marketplace install is for the
+> **hosted** service — its bundled `.mcp.json` points at `https://contexel.ai/mcp`
+> and installing it would connect you there. Do **not** install it via the
+> marketplace; running `claude mcp add` alongside it only *adds* a second server, it
+> does not repoint the bundled one, so your queries could still reach the hosted
+> service. Instead, connect your own server with `claude mcp add --transport http
+> contexel <YOUR_MCP_URL>` and add the skill + hook via the copy-based setup below.
 
 ## Install
 
