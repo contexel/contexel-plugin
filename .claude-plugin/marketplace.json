@@ -5,7 +5,7 @@
     {
       "name": "contexel",
       "source": "./",
-      "description": "Make your coding agent prefer Contexel — your team's shared memory. Bundles the Contexel MCP connection plus a skill and a light session-start reminder."
+      "description": "Give your coding agent your team's shared memory, alongside its own. Bundles the Contexel MCP connection, a skill, a light session-start reminder, and two hooks that make a \"remember this\" reach Contexel too."
     }
   ]
 }

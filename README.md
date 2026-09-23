@@ -19,6 +19,20 @@ your team's shared memory for AI. It bundles:
   facts to Contexel. It is static text only — it does not call the Contexel CLI,
   hit the network, or auto-run `prime` (that heavier variant spends tokens every
   session and stays opt-in; see `hooks/session-start-reminder.sh`).
+- **Two memory hooks** that make a "remember this" reach Contexel too, alongside
+  the agent's own built-in memory (never instead of it):
+  - `prompt-memory-nudge.sh` (UserPromptSubmit): when your message asks for
+    something to be remembered ("remember", "save to memory", "note this",
+    "from now on", ...), it adds one line asking the agent to save it with
+    Contexel's `observe` tool as well. Silent for every other message.
+  - `local-memory-catch.sh` (PostToolUse on Write, Edit and MultiEdit): when the
+    agent saves to its built-in memory folder, it asks the agent to save the same
+    fact to Contexel too, so it doesn't stay on one machine.
+
+  Both are local shell scripts: no network, no secrets, nothing written. Measured
+  with Contexel's call-through eval under realistic conditions (no server
+  instructions reaching the agent, a lived-in built-in memory), saves reaching
+  Contexel went from 0 of 6 without the plugin to 6 of 6 with these hooks.
 
 ## How it fits with the other setup steps
 
@@ -74,20 +88,20 @@ it automatically when your request matches its description.
 
 ### By copying into `~/.claude` (no marketplace)
 
-Copy the skill into your user config:
+From a checkout of this repo, copy the skill into your user config:
 
 ```
 mkdir -p ~/.claude/skills
-cp -r clients/claude-code/skills/contexel-memory ~/.claude/skills/
+cp -r skills/contexel-memory ~/.claude/skills/
 ```
 
-That copy installs the **skill only**. The SessionStart reminder is a hook, and
-hooks are configured separately, so to get it without the plugin install:
+That copy installs the **skill only**. The reminder and the memory hooks are
+hooks, and hooks are configured separately, so to get them without the plugin install:
 
 ```
 mkdir -p ~/.claude/contexel
-cp clients/claude-code/hooks/session-start-reminder.sh ~/.claude/contexel/
-chmod +x ~/.claude/contexel/session-start-reminder.sh
+cp hooks/*.sh ~/.claude/contexel/
+chmod +x ~/.claude/contexel/*.sh
 ```
 
 Then add this to your `~/.claude/settings.json` (use the ABSOLUTE path you copied
@@ -101,6 +115,22 @@ to, since `${CLAUDE_PLUGIN_ROOT}` is only set for installed plugins):
         "matcher": "",
         "hooks": [
           { "type": "command", "command": "\"$HOME\"/.claude/contexel/session-start-reminder.sh" }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "\"$HOME\"/.claude/contexel/prompt-memory-nudge.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "\"$HOME\"/.claude/contexel/local-memory-catch.sh" }
         ]
       }
     ]
@@ -120,11 +150,13 @@ to, since `${CLAUDE_PLUGIN_ROOT}` is only set for installed plugins):
 │   └── contexel-memory/
 │       └── SKILL.md                # the auto-invoked skill (the two mandates)
 ├── hooks/
-│   ├── hooks.json                  # SessionStart hook config
-│   └── session-start-reminder.sh   # the light, dependency-free reminder
+│   ├── hooks.json                  # SessionStart, UserPromptSubmit, PostToolUse config
+│   ├── session-start-reminder.sh   # the light, dependency-free reminder
+│   ├── prompt-memory-nudge.sh      # "remember this" prompts: save it to Contexel
+│   └── local-memory-catch.sh       # a save to built-in memory: copy it to Contexel
 └── README.md
 ```
 
 The skill body and the hook reminder are kept in lockstep with Contexel's server
-`instructions` (the two mandates and "memory of record" framing) so all three say
+`instructions` (the two mandates and the "alongside your own memory" framing) so all three say
 the same thing.

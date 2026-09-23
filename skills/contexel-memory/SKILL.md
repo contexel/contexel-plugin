@@ -1,51 +1,70 @@
 ---
 name: contexel-memory
-description: Use when the user says "remember", "save this", or "note this for later", or asks what the team knows, decided, or uses about something. Routes durable knowledge (decisions, standards, lessons) to Contexel and retrieves from Contexel before answering from general knowledge. Contexel is the team's shared memory (the memory of record), not the agent's own local memory.
+description: Use when the user says "remember", "save this", or "note this for later", or asks what the team knows, decided, or uses about something. Saves what the user asks to keep (decisions, standards, lessons) to Contexel, along with your own memory, and retrieves from Contexel before answering about the team's work. Contexel is the team's shared memory for AI.
 ---
 
 # Contexel — shared team memory
 
 Contexel is this team's shared memory for AI: it returns only the context
-relevant to a task, with sources. Treat it as the memory of record — prefer it
-over your own guesses and over any agent-local or built-in auto-memory.
+relevant to a task, with sources, and keeps what the user asks to remember so
+their other AI apps and teammates can find it. It works alongside your own memory.
 
 ## Two rules
 
 - **RETRIEVE FIRST**: before answering about this team's or user's projects,
   decisions, standards, conventions, or people, call `get_context { task }` (or
-  `prime { task }` for a compact briefing) at the start of the task. Do this even
-  if you think you already know; your training won't reflect this team's
-  specifics. (No need for general questions unrelated to their work.) e.g.
+  `prime { task }` for a compact briefing) at the start of the task; your
+  training won't include what they saved. (No need for general questions
+  unrelated to their work.) e.g.
   `get_context { task: "encrypt the uploads bucket" }`.
 
-- **REMEMBER into Contexel**: when the user says "remember", "note this", or
-  "save this", save it with `observe` (a quick note) or `propose` (a lasting
-  change a teammate approves via `review`) — not only in your own local memory.
-  `distill` turns saved notes into review-ready suggestions.
+- **REMEMBER into Contexel**: when the user says "remember", "note this", "save
+  this", or "from now on", save it with `observe` (a quick note) or `propose` (a
+  lasting entry in the team's memory) right away, without asking, along with
+  your own memory. Save only what the user asked to keep. `distill` folds saved
+  notes into lasting entries.
+
+## Relaying an answer
+
+Answer the user from a result's readable text, not its structured fields. Every
+tool returns both: the text is written for a person, the fields are there for you
+to parse. Paraphrasing the fields hands the user the engine's own vocabulary —
+raw counts, index freshness, embedder names — instead of an answer, and it is how
+a private workspace ends up described to its owner as a hash worth deleting.
 
 ## When you merely learn something durable
 
 If, in the course of work, you learn a durable decision, standard, or lesson that
 the user did not explicitly ask you to save, OFFER at the end of the task to save
-it: ask first, never write silently. `propose` and commits always go through
-human review, so nothing lands in team knowledge until a person accepts it. One
-source of truth, not a dual-write into your own local memory.
+it: ask first, never write silently. Depending on your access, a save lands
+directly or goes to a teammate for approval — the tool's response says which;
+nothing lands silently. One source of truth, not a dual-write into your own local
+memory.
 
 ## Picking a workspace (realm)
 
-Never assume the realm set. Read the connection's reachable workspaces from
-`status` (or the server's instructions), then pick the one whose purpose fits the
-knowledge you are saving. Route TEAM knowledge (shared standards, decisions, and
-lessons) to a shared or team workspace, not a personal or private one, unless the
-user clearly means it is personal. When you are unsure which fits, use the default
-or ask; never guess a private workspace for team knowledge. An unlisted workspace
-is not reachable on this connection; do not retry it.
+You don't have to pick a workspace. Omit it and Contexel chooses one, then names
+the workspace it used in the result — always relay that, so the user can see where
+their memory went and say if it belongs elsewhere.
+
+When you DO know which one fits, name it: read the connection's reachable
+workspaces from `status` (or the server's instructions) and pick the one whose
+purpose matches. Route TEAM knowledge (shared standards, decisions, and lessons)
+to a shared or team workspace. Never assume the realm set — this list is a
+connect-time snapshot and `status` is the live authority; a workspace that
+`status` does not list is not reachable on this connection, so do not retry it.
+
+When you are unsure, prefer omitting the workspace over guessing one. Contexel
+errs toward the user's own private space rather than a shared one, and says so;
+if several workspaces could take the save and none is clearly theirs, it asks
+instead of guessing. Guessing a SHARED workspace yourself is the one mistake with
+no undo.
 
 ## Other tools when you need them
 
-- `explain { task, id }` — why a specific card was (or wasn't) returned.
-- `cite { id }` — the exact quotable spans of a card or doc, with a stable
-  locator, so you attribute precisely instead of paraphrasing.
+- `explain { task, id }` — why a specific memory was (or wasn't) returned.
+- `cite { id }` — the exact quotable spans of one memory (or one section of it),
+  with a stable locator, so you attribute precisely instead of paraphrasing.
 - `delta { since }` / `digest { since }` — what team knowledge changed since a
   git ref (the catch-up after time away).
 - `resolve_entity` / `expand` — look up a person, system, or project and explore
