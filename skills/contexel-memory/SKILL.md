@@ -33,9 +33,9 @@ approval; the response says which, and names the workspace.
 
 ## Relaying an answer
 
-Answer the user from a result's readable text, not its structured fields. Every
-tool returns both: the text is written for a person, the fields are there for you
-to parse. Paraphrasing the fields hands the user the engine's own vocabulary (raw
+Tell the user what you found in plain words, never field names. Some
+apps show you a result's readable text and some show only its structured fields.
+Either way, reciting the fields hands the user the engine's own vocabulary (raw
 counts, index freshness, embedder names) instead of an answer, and it is how a
 private workspace ends up described to its owner as a hash worth deleting.
 

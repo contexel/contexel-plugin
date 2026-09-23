@@ -28,7 +28,7 @@ printf '%s\n' \
   '- You don'\''t have to pick a workspace: omit it and Contexel chooses one, then names' \
   '  it in the result. Relay that, and save again with `realm` named if it is not the' \
   '  one the user meant.' \
-  '- Answer the user from a result'\''s readable text, not its structured fields.' \
+  '- Tell the user what you found in plain words, never field names.' \
   '  Every tool returns both; the fields are there for you to parse, not to quote.' \
   '' \
   'Run `status` to see which workspaces this connection can reach before naming a realm.' \
