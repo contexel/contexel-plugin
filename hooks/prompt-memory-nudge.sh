@@ -16,6 +16,6 @@
 input=$(cat)
 
 if printf '%s' "$input" | grep -Eiq '"prompt"[[:space:]]*:[[:space:]]*".*(remember|memori[sz]e|(to|in|into|your|my) memory|note (this|that|it)|save (this|that|it)|keep (this|that|it) in mind|keep in mind|from now on|don.?t (let (me|us) )?forget|make sure (that.?s|this is|it.?s) recorded)'; then
-  printf '%s\n' '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"The user wants this remembered. Save it to Contexel with its `observe` tool (search your tools for \"contexel observe\" if it is not loaded yet), along with your own memory, so their other AI apps and their team have it too. Save only what the user asked to keep."}}'
+  printf '%s\n' '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"The user wants this remembered. Save it to Contexel with its `remember` tool (search your tools for \"contexel remember\" if it is not loaded yet), along with your own memory, so their other AI apps and their team have it too. If it changes something already saved there, find it with `get_context` or `search`, then fix it with `correct` using its id. Save only what the user asked to keep."}}'
 fi
 exit 0

@@ -18,7 +18,7 @@ path=$(printf '%s' "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]
 
 case "$path" in
   */.claude/projects/*/memory/* | */MEMORY.md | MEMORY.md)
-    printf '%s\n' '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"You saved that to your own memory, which only this app on this machine can see. If Contexel is connected, save the same fact there too with its `observe` tool (search your tools for \"contexel observe\" if needed), so the user'"'"'s other AI apps and their team have it."}}'
+    printf '%s\n' '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"You saved that to your own memory, which only this app on this machine can see. If Contexel is connected, save the same fact there too with its `remember` tool (search your tools for \"contexel remember\" if needed), so the user'"'"'s other AI apps and their team have it. If this changes a memory already saved there, find it with `get_context` or `search`, then fix it with `correct` using its id."}}'
     ;;
 esac
 exit 0

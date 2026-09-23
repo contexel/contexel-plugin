@@ -1,7 +1,7 @@
 {
   "name": "contexel",
   "description": "Give your coding agent your team's shared memory, alongside its own. Bundles a skill (retrieve team context first; save the decisions, standards, and lessons the user asks to keep into Contexel), a light session-start reminder, and two memory hooks that make a \"remember this\" reach Contexel too. Complements the Contexel MCP connection and the per-project rules file; it does not replace them.",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "author": {
     "name": "Contexel",
     "url": "https://contexel.ai"
