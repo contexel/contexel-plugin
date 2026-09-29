@@ -1,21 +1,22 @@
 ---
 name: contexel-memory
-description: Use when the user says "remember", "save this", or "note this for later", says a saved memory is wrong, or asks what the team knows, decided, or uses about something. Saves what the user asks to keep (decisions, standards, lessons) to Contexel, along with your own memory, fixes a wrong memory there, and retrieves from Contexel before answering about the team's work. Contexel is the team's shared memory for AI.
+description: Use when the user says "remember", "save this", or "note this for later", says a saved memory is wrong, or asks what they, their family, or their team saved or decided about something. Saves what the user asks to keep to Contexel, along with your own memory, fixes a wrong memory there, and retrieves from Contexel before answering about the user's life, family, or work. Contexel is the user's shared memory for AI, at home or work.
 ---
 
-# Contexel: shared team memory
+# Contexel: shared memory
 
-Contexel is this team's shared memory for AI: it returns only the context
-relevant to a task, with sources, and keeps what the user asks to remember so
-their other AI apps and teammates can find it. It works alongside your own memory.
+Contexel is the user's shared memory for AI, at home or work: it returns only the
+context relevant to a task, with sources, and keeps what the user asks to remember
+so their other AI apps and their family or team can find it.
+It works alongside your own memory.
 
 ## Two rules
 
-- **RETRIEVE FIRST**: before answering about this team's or user's projects,
-  decisions, standards, conventions, or people, call `get_context { task }` at
+- **RETRIEVE FIRST**: before answering about the user's life, family, or work
+  (their plans, decisions, standards, or people), call `get_context { task }` at
   the start of the task; your training won't include what they saved. (No need
-  for general questions unrelated to their work.) e.g.
-  `get_context { task: "encrypt the uploads bucket" }`.
+  for general questions unrelated to them.) e.g.
+  `get_context { task: "pack snacks for Emma's school trip" }`.
 
 - **REMEMBER into Contexel**: when the user says "remember", "note this", "save
   this", or "from now on", save it with `remember` right away (no lookup first),
