@@ -24,12 +24,12 @@ their other AI apps and teammates can find it. It works alongside your own memor
 ## Fixing a memory that is wrong
 
 When the user says a saved memory is wrong or out of date, find it with
-`get_context` or `search`, then fix it with `correct` using its id. Pass that `id`, a short `reason`, and the new text as `replace_with`. To retire
+`get_context` or `search`, then fix it with `correct` using its id. Pass that `id`, a short `reason`, and the new text as `replace_with`. To remove
 a memory that no longer holds, leave out `replace_with` and pass the memory's
 id. Pass the `realm` the result named, if it named one.
 
-Depending on your access, a save or fix lands at once or is queued for
-approval; the response says which, and names the workspace.
+A save or fix lands at once, is queued for approval, or is refused if this
+connection can only view; the response says which, and names the workspace.
 
 ## Relaying an answer
 

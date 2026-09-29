@@ -22,9 +22,9 @@ printf '%s\n' \
   '  learn a durable decision, standard, or lesson while working, OFFER at the end of' \
   '  the task to save it: ask first, never write silently.' \
   '- If a saved memory is wrong or out of date, find it with `get_context` or `search`,' \
-  '  then fix it with `correct` using its id (leave out the new text to retire it).' \
-  '  Depending on your access, a save or fix lands at once or is queued for' \
-  '  approval; the response says which, and names the workspace.' \
+  '  then fix it with `correct` using its id (leave out the new text to remove it).' \
+  '  A save or fix lands at once, is queued for approval, or is refused if this' \
+  '  connection can only view; the response says which, and names the workspace.' \
   '- You don'\''t have to pick a workspace: omit it and Contexel chooses one, then names' \
   '  it in the result. Relay that, and save again with `realm` named if it is not the' \
   '  one the user meant.' \
