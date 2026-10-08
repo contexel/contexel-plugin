@@ -56,7 +56,8 @@ The plugin bundles:
   agree: one `remember` note starting with `#handoff`, naming the project, with
   what is done, what is next and what is still open. Each new hand-off replaces
   your previous one on that project (a teammate's stays), and the next lookup
-  about it shows it first, under "Where things stand".
+  about it shows it after the rules and decisions in force, under "Where things
+  stand".
 - **Two memory hooks** that make a "remember this" reach Contexel too, alongside
   the agent's own built-in memory (never in place of it):
   - `prompt-memory-nudge.sh` (UserPromptSubmit): when your message asks for

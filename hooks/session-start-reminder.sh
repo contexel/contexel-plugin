@@ -31,7 +31,7 @@ printf '%s\n' \
   '- HAND OFF: when a stretch of work ends, offer to save where things stand, and save it if the' \
   '  user agrees: one `remember` note that starts with `#handoff`, names the project in `entities`,' \
   '  and says what is done, what is next, and what is still open. It replaces the user'\''s previous' \
-  '  hand-off on that project; a later lookup shows it first, under "Where things stand".' \
+  '  hand-off on that project; a later lookup shows it under "Where things stand".' \
   '- Tell the user what you found in plain words, never field names.' \
   '  Every tool returns both; the fields are there for you to parse, not to quote.' \
   '' \

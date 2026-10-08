@@ -30,7 +30,8 @@ stretch of work ends and the user agrees when you offer, save ONE note with
 and say what is done, what is next, and what is still open (approaches that failed
 included, so nobody tries them again). Each new hand-off replaces the user's
 previous one on that subject; a teammate's stays. When work on that subject starts
-again, `get_context` shows the latest hand-off first, under "Where things stand".
+again, `get_context` shows the latest hand-off under "Where things stand", after the
+rules and decisions in force: it says where work stopped, it is not a rule to follow.
 
 ## Fixing a memory that is wrong
 
