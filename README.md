@@ -51,6 +51,12 @@ The plugin bundles:
   facts to Contexel. It is static text only: it does not call the Contexel CLI,
   reach the network, or run a lookup on its own (that heavier variant spends
   tokens every session and stays opt-in; see `hooks/session-start-reminder.sh`).
+- **Hand-offs.** The skill and the SessionStart reminder tell the agent that when a
+  stretch of work ends it offers to save where things stand, and saves it if you
+  agree: one `remember` note starting with `#handoff`, naming the project, with
+  what is done, what is next and what is still open. Each new hand-off replaces
+  your previous one on that project (a teammate's stays), and the next lookup
+  about it shows it first, under "Where things stand".
 - **Two memory hooks** that make a "remember this" reach Contexel too, alongside
   the agent's own built-in memory (never in place of it):
   - `prompt-memory-nudge.sh` (UserPromptSubmit): when your message asks for
@@ -94,14 +100,14 @@ It still pairs with:
   choose **Claude Code** and copy the request under **2. Make your AI use it**.
   Pasted into Claude Code, it adds a short Contexel section to your project's
   `CLAUDE.md` (the rules come from `GET /v1/connect/rules`). Agents follow project
-  rules more reliably than server hints, and this is where your workspace list
-  comes from.
+  rules more reliably than server hints.
 
 The plugin is **generic and tenant-agnostic**: it ships no workspace names and no
 secrets. The bundled MCP URL is the shared hosted endpoint
 (`https://contexel.ai/mcp`), the same for every team, because OAuth selects your
-workspace at sign-in. So the same plugin works for everyone, and your workspace
-list still comes from the Step 2 rules.
+workspace at sign-in. So the same plugin works for everyone. The Step 2 rules name
+no workspace either: your agent asks `status` which workspaces it can reach, so
+nothing goes stale when a workspace is added, renamed or archived.
 
 > **Self-hosting Contexel at a different URL?** This marketplace install is for the
 > **hosted** service: its bundled `.mcp.json` points at `https://contexel.ai/mcp`

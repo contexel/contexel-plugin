@@ -22,6 +22,16 @@ It works alongside your own memory.
   this", or "from now on", save it with `remember` right away (no lookup first),
   without asking, along with your own memory. Save only what the user asked to keep.
 
+## Handing off where things stand
+
+When the user asks you to hand off, wrap up, or save where things stand, or when a
+stretch of work ends and the user agrees when you offer, save ONE note with
+`remember`: start it with `#handoff`, name the project or subject in `entities`,
+and say what is done, what is next, and what is still open (approaches that failed
+included, so nobody tries them again). Each new hand-off replaces the user's
+previous one on that subject; a teammate's stays. When work on that subject starts
+again, `get_context` shows the latest hand-off first, under "Where things stand".
+
 ## Fixing a memory that is wrong
 
 When the user says a saved memory is wrong or out of date, find it with
